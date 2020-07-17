@@ -1,26 +1,59 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Products from './components/Products';
+import OrderSummary from './components/OrderSummary';
+import CartTotal from './components/CartTotal';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// importing product images
+import lassoImg from './assets/lasso-shumai-small-tote-military-green.png';
+import handImg from "./assets/hand-coffee-carafe-set.png";
+
+
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      items: [
+        {
+          name:"Lasso - Shumai Small Tote Military Green", 
+          price: 200.00,
+          imgUrl: lassoImg,
+          quantity: 0
+        },
+        {
+          name: "H.A.N.D - Coffee Carafe Set",
+          price: 140.00,
+          imgUrl: handImg,
+          quantity: 1
+
+        }
+      ],
+      delivery: 0,
+      subtotal: 0,
+      taxPercent: 5,
+      taxTotal: 29
+    }
+  }
+
+  increaseProduct = () => {
+    // let productQuanity = {...this.state.}
+    console.log( {...this.state.items[0].quantity})
+    // this.setState({
+     
+    // })
+  }
+
+  render() {
+    console.log(this.increaseProduct())
+    return (
+      <div className="App">
+        <CartTotal taxTotal={this.state.taxTotal}  />
+        <Products items={this.state.items} />
+        <OrderSummary />
+      </div>
+    );
+  }
 }
 
 export default App;
